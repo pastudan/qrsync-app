@@ -9,7 +9,7 @@ const wss = new WebSocketServer({ port });
 let channels = {};
 
 wss.on("connection", function connection(ws, req) {
-  const channelId = req.url.substring(1);
+  const channelId = req.url.split("/ws/")[1];
   if (!channelId || channelId.length !== 21) {
     console.log("Invalid channel ID");
     ws.close();
