@@ -88,7 +88,7 @@ function SimplePeerChat() {
     function connectWs() {
       const url = `ws${isDev ? "" : "s"}://${window.location.host}${
         isDev ? ":4000" : ""
-      }/${id}`;
+      }/ws/${id}`;
       ws = new WebSocket(url);
       ws.onopen = () => {
         console.log("ws open");
