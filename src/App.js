@@ -176,7 +176,7 @@ function SimplePeerChat() {
           <h3>Encryption Key</h3>
           <div>{encryptionKey}</div>
           <h3>URL</h3>
-          <a href={url} target="_blank">
+          <a href={url} target="_blank" rel="noreferrer">
             {url}
           </a>
           {error && (
