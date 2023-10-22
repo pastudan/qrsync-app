@@ -7,6 +7,8 @@ import TextAreaAutosize from "react-textarea-autosize";
 let ws = null;
 let peer = null;
 
+const isDev = process.env.NODE_ENV === "development";
+
 function copy(text) {
   if (!navigator.clipboard) {
     console.error(
@@ -84,7 +86,10 @@ function SimplePeerChat() {
     }
 
     function connectWs() {
-      ws = new WebSocket(`ws://${window.location.hostname}:4000/${id}`);
+      const url = `ws${isDev ? "" : "s"}://${window.location.host}${
+        isDev ? ":4000" : ""
+      }/${id}`;
+      ws = new WebSocket(url);
       ws.onopen = () => {
         console.log("ws open");
       };
