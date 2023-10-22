@@ -18,8 +18,8 @@ wss.on("connection", function connection(ws, req) {
 
   ws.channelId = channelId;
   ws.connectionTime = Date.now();
-  const realIp = req.headers["x-real-ip"];
-  const ipAddress = realIp || req.socket.remoteAddress;
+  const ipAddress =
+    req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
   console.log(`New connection: ${ws.channelId} [${ipAddress}]`);
   channels[channelId] = channels[channelId] || [];
   channels[channelId].push(ws);
